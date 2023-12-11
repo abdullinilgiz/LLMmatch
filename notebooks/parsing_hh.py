@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 from pprint import pprint
 
-with open("../data/htmls/fullstack.html", "r", encoding="utf-8") as file:
+with open("../data/htmls/sys_analitic.html", "r", encoding="utf-8") as file:
     html_content = file.read()
 
 soup = BeautifulSoup(html_content, "html.parser")
@@ -44,9 +44,29 @@ skills = (
     else "Skills not specified"
 )
 
-print("Должность: " + content)
+raw_address_element = soup.find(
+    attrs={"data-qa": "vacancy-view-raw-address"}
+)
+address = (
+    raw_address_element.get_text()
+    if raw_address_element
+    else "Raw address not available"
+)
+
+location_element = soup.find(
+    attrs={"data-qa": "vacancy-view-location"}
+)
+location = (
+    location_element.get_text()
+    if location_element
+    else "Location is not specified"
+)
+
 print("Заработная плата: " + salary)
-print("Требуемый опыт работы: " + experience)
+print("Должность: " + content)
+print("Локация: " + location)
+print("Адрес: " + address)
 print("Тип занятости: " + employment)
+print("Требуемый опыт работы: " + experience)
 print("Описание: " + description)
 print("Навыки: " + skills)
