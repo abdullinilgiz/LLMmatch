@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 from pprint import pprint
 
-with open("../data/htmls/sys_analitic.html", "r", encoding="utf-8") as file:
+with open("../data/htmls/electro3.html", "r", encoding="utf-8") as file:
     html_content = file.read()
 
 soup = BeautifulSoup(html_content, "html.parser")
